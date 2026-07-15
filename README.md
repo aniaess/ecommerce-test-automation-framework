@@ -41,14 +41,17 @@ E_commerce_Test_Automation_Framework
 ├── utils/                  # Utilities (logger, data loader, etc.)
 ├── test_data/              # JSON test data
 │
-├── screenshots/            # Screenshots for failed tests
-├── logs/                   # Log files
-├── allure-results/         # Raw Allure results
-├── allure-report/          # Generated HTML report
+├── .github/
+│   └── workflows/          # GitHub Actions CI pipeline
 │
 ├── requirements.txt
 ├── pytest.ini
 └── README.md
+
+screenshots/                # Screenshots from failed tests
+logs/                       # Test execution logs
+allure-results/             # Raw Allure test results
+allure-report/              # Generated HTML report
 ```
 
 ---
@@ -64,6 +67,8 @@ E_commerce_Test_Automation_Framework
 * Allure HTML reports
 * Playwright Expect assertions
 * Easy project scalability
+*  CI/CD integration with GitHub Actions
+* Different browser execution modes for local and CI environments
 
 ---
 
@@ -148,6 +153,36 @@ Run → Edit Configurations → Additional Arguments
 
 ---
 
+# CI/CD - GitHub Actions
+
+The project includes GitHub Actions workflow for automated test execution.
+Tests are executed automatically after pushing changes to the main branch.
+
+The pipeline automatically:
+
+* Creates a clean test environment
+* Installs Python dependencies
+* Installs Playwright browsers
+* Runs Pytest test suite
+* Uploads Allure test results
+
+Workflow location:
+```text
+.github/workflows/tests.yml
+```
+
+---
+# Playwright Execution Mode
+
+The framework supports different browser execution modes depending on the environment.
+
+# Local execution
+
+When running tests locally, Playwright runs in headed mode:
+```python
+headless=False
+```
+---
 # Logging
 
 The framework creates a separate log file for each executed test.
@@ -183,10 +218,19 @@ test_login_success_2026-07-14_20-30-11.png
 ```
 
 ---
-
 # Allure Reports
 
-The framework supports Allure HTML Reports.
+The framework integrates Allure Reports using the `allure-pytest` plugin.
+
+Allure provides:
+
+* Test execution overview
+* Passed/failed test information
+* Failure details
+* Execution history
+* Better debugging visibility
+
+Raw results are generated after test execution in:
 
 ## Prerequisites
 
@@ -300,22 +344,6 @@ This keeps tests readable and minimizes duplicated code.
 
 ---
 
-# Future Improvements
-
-Possible enhancements:
-
-* GitHub Actions (CI/CD)
-* Parallel execution with pytest-xdist
-* API testing integration
-* Docker support
-* Cross-browser execution
-* Test retries
-* Environment configuration
-* Allure attachments (logs & screenshots)
-
----
-
 # Author
 
 Created as a personal QA Automation portfolio project using Python, Pytest, Playwright, and Allure Report.
-
