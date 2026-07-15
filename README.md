@@ -1,3 +1,5 @@
+![Tests](https://github.com/aniaess/ecommerce-test-automation-framework/actions/workflows/tests.yml/badge.svg)
+
 # E-Commerce Test Automation Framework
 
 ## Overview
