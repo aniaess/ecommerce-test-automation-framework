@@ -318,3 +318,4 @@ Possible enhancements:
 # Author
 
 Created as a personal QA Automation portfolio project using Python, Pytest, Playwright, and Allure Report.
+
