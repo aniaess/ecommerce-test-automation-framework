@@ -5,6 +5,8 @@ from datetime import datetime
 from pathlib import Path
 import logging
 
+from pytest_playwright.pytest_playwright import browser
+
 from pages.checkout_overview_page import CheckoutOverviewPage
 from utils.logger import setup_test_logger
 from utils.data_loader import get_user_login_data, get_checkout_data
@@ -24,6 +26,9 @@ def page(request):
     logger.info("========== TEST STARTED ==========")
 
     with sync_playwright() as p:
+        # headless = os.getenv("CI") == "true"
+        #
+        # browser = p.chromium.launch(headless=headless)
         browser = p.chromium.launch(headless=False)
         context = browser.new_context()
         page = context.new_page()
