@@ -1,16 +1,25 @@
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
 # Pytest
 .pytest_cache/
 
-# Playwright screenshots
+# Playwright
+playwright/.cache/
+
+# Screenshots
 screenshots/
+
+# Logs
+logs/
+*.log
 
 # Allure
 allure-results/
@@ -19,6 +28,3 @@ allure-report/
 # IDE
 .idea/
 .vscode/
-
-# Logs
-*.log
