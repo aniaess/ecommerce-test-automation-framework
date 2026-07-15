@@ -26,10 +26,9 @@ def page(request):
     logger.info("========== TEST STARTED ==========")
 
     with sync_playwright() as p:
-        # headless = os.getenv("CI") == "true"
-        #
-        # browser = p.chromium.launch(headless=headless)
-        browser = p.chromium.launch(headless=False)
+        headless = os.getenv("CI") == "true"
+        browser = p.chromium.launch(headless=headless)
+
         context = browser.new_context()
         page = context.new_page()
 
