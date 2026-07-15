@@ -1,6 +1,5 @@
-![Tests](https://github.com/aniaess/ecommerce-test-automation-framework/actions/workflows/tests.yml/badge.svg)
-
 # E-Commerce Test Automation Framework
+![Tests](https://github.com/aniaess/ecommerce-test-automation-framework/actions/workflows/tests.yml/badge.svg)
 
 ## Overview
 
@@ -38,22 +37,24 @@ The project includes:
 ```text
 E_commerce_Test_Automation_Framework
 │
-├── pages/                  # Page Objects
-├── tests/                  # Test cases and conftest.py
-├── utils/                  # Utilities (logger, data loader, etc.)
-├── test_data/              # JSON test data
-│
+├── pages/
+├── tests/
+├── utils/
+├── test_data/
 ├── .github/
-│   └── workflows/          # GitHub Actions CI pipeline
-│
+│   └── workflows/
 ├── requirements.txt
 ├── pytest.ini
 └── README.md
+```
 
-screenshots/                # Screenshots from failed tests
-logs/                       # Test execution logs
-allure-results/             # Raw Allure test results
-allure-report/              # Generated HTML report
+Generated during test execution:
+
+```text
+screenshots/
+logs/
+allure-results/
+allure-report/
 ```
 
 ---
@@ -158,32 +159,45 @@ Run → Edit Configurations → Additional Arguments
 # CI/CD - GitHub Actions
 
 The project includes GitHub Actions workflow for automated test execution.
-Tests are executed automatically after pushing changes to the main branch.
 
 The pipeline automatically:
 
 * Creates a clean test environment
 * Installs Python dependencies
 * Installs Playwright browsers
-* Runs Pytest test suite
-* Uploads Allure test results
+* Runs the Pytest test suite
 
 Workflow location:
+
 ```text
 .github/workflows/tests.yml
 ```
+
+Tests are executed automatically after pushing changes to the `main` branch.
+
+## Workflow Artifacts
+
+After each workflow execution, GitHub Actions uploads the following artifacts:
+
+* **allure-results** – raw Allure execution results used for generating HTML reports.
+* **screenshots** – screenshots captured automatically for failed tests (if available).
 
 ---
 # Playwright Execution Mode
 
 The framework supports different browser execution modes depending on the environment.
 
-# Local execution
+## Local execution
 
 When running tests locally, Playwright runs in headed mode:
 ```python
 headless=False
 ```
+## CI execution
+
+When running inside GitHub Actions, Playwright automatically switches to headless mode.
+
+This allows tests to execute on Linux runners without a graphical interface.
 ---
 # Logging
 
@@ -233,6 +247,12 @@ Allure provides:
 * Better debugging visibility
 
 Raw results are generated after test execution in:
+
+```text
+allure-results/
+```
+
+The HTML report can then be generated locally using the Allure CLI.
 
 ## Prerequisites
 
@@ -345,6 +365,16 @@ Each page contains:
 This keeps tests readable and minimizes duplicated code.
 
 ---
+# Future Improvements
+
+Possible enhancements:
+
+* Automatic publication of Allure HTML reports via GitHub Pages
+* Parallel execution using pytest-xdist
+* Docker support
+* Cross-browser execution
+* Environment profiles
+* Retry mechanism for flaky tests
 
 # Author
 
