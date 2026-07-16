@@ -167,6 +167,9 @@ def pytest_runtest_makereport(item, call):
         if report.failed:
             logger.error("========== TEST FAILED ==========")
 
+            if hasattr(report, "longrepr"):
+                logger.error("Test failure details:\n%s", report.longrepr)
+
             if page:
                 screenshots_dir = Path(__file__).parent.parent / "screenshots"
                 screenshots_dir.mkdir(exist_ok=True)

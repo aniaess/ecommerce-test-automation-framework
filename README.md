@@ -66,7 +66,7 @@ allure-report/
 * Externalized test data
 * Automatic browser management
 * Automatic screenshots for failed tests
-* Individual log file for every test
+* Individual log file for every test with exception traceback
 * Allure HTML reports
 * Playwright Expect assertions
 * Easy project scalability
