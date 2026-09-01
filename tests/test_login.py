@@ -3,7 +3,6 @@ from pages.products_page import ProductsPage
 from utils.data_loader import get_user_login_data
 from utils.messages import Messages
 import pytest
-from playwright.sync_api import expect
 
 
 def test_login_success(page):

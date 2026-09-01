@@ -9,6 +9,13 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -33,7 +40,17 @@ jobs:
 
       - name: Run tests
         run: |
-          pytest
+          pytest --alluredir=allure-results
+
+      - name: Install Allure
+        if: always()
+        run: |
+          npm install -g allure-commandline
+
+      - name: Generate Allure report
+        if: always()
+        run: |
+          allure generate allure-results -o allure-report --clean
 
       - name: Upload Allure results
         if: always()
@@ -43,6 +60,14 @@ jobs:
           path: allure-results
           if-no-files-found: ignore
 
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+          if-no-files-found: ignore
+
       - name: Upload screenshots
         if: always()
         uses: actions/upload-artifact@v4
@@ -50,3 +75,26 @@ jobs:
           name: screenshots
           path: screenshots
           if-no-files-found: ignore
+
+  deploy:
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Allure report
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: allure-report
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
