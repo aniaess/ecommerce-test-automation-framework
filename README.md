@@ -1,5 +1,6 @@
 # E-Commerce Test Automation Framework
 ![Tests](https://github.com/aniaess/ecommerce-test-automation-framework/actions/workflows/tests.yml/badge.svg)
+[📊 View Allure Report](https://aniaess.github.io/ecommerce-test-automation-framework/)
 
 ## Overview
 
